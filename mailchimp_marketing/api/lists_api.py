@@ -7664,6 +7664,8 @@ class ListsApi(object):
         :param async_req bool
         :param str list_id: The unique ID for the list. (required)
         :param str name: The search query used to filter tags.  The search query will be compared to each tag as a prefix, so all tags that have a name starting with this field will be returned.
+        :param int count: The number of records to return. Default value is 10. Maximum value is 1000
+        :param int offset: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0.
         :return: TagSearchResults
                  If the method is called asynchronously,
                  returns the request thread.
@@ -7692,7 +7694,7 @@ class ListsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['list_id', 'name']  # noqa: E501
+        all_params = ['list_id', 'name', 'count', 'offset']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -7721,6 +7723,10 @@ class ListsApi(object):
         query_params = []
         if 'name' in params:
             query_params.append(('name', params['name']))  # noqa: E501
+        if 'count' in params:
+            query_params.append(('count', params['count']))  # noqa: E501
+        if 'offset' in params:
+            query_params.append(('offset', params['offset']))  # noqa: E501
 
         header_params = {}
 
